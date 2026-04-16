@@ -2,7 +2,7 @@
 
 FinMD take home assessment
 
-A lightweight browser-based tool that parses a PDF income document and determines whether the applicant's income exceeds **$150,000**.
+A browser-based tool that parses a PDF income document and determines whether the applicant's income exceeds **$150,000**.
 
 ---
 
@@ -34,22 +34,7 @@ Then open [http://localhost:5173](http://localhost:5173) in your browser.
 | `npm run preview` | Preview the production build locally |
 | `npm run typecheck` | Run TypeScript type checking |
 
----
 
-## Usage
-
-1. Click the upload zone (or drag and drop) to select a PDF
-2. The tool parses the document in-browser and displays one of three results:
-
-| Result | Meaning |
-|---|---|
-| **Verified** | An income figure was found and it exceeds $150,000 |
-| **Not Verified** | An income figure was found and it is $150,000 or below |
-| **Unable to Determine** | No clearly labelled income field could be identified |
-
-The exact field and dollar value used for the decision are always shown where available.
-
----
 
 ## Deployment
 
@@ -99,22 +84,6 @@ income > $150,000  →  Verified
 income ≤ $150,000  →  Not Verified
 no income found    →  Unable to Determine
 ```
-
----
-
-## Assumptions & Limitations
-
-**Assumptions:**
-- Input PDFs are text-based (i.e. digitally created, not scanned images)
-- The income figure appears on the same line as its label (e.g. `Adjusted Gross Income: $165,000`)
-- A single income figure is sufficient — the tool uses the first high-priority match it finds
-
-**Limitations:**
-- **No OCR support** — scanned or image-based PDFs will return Unable to Determine, as pdfjs cannot extract text from images
-- **Single-value logic** — the tool does not aggregate multiple income figures (e.g. base salary + bonus)
-- **English labels only** — non-English documents are not supported
-- **Ambiguous documents** — fields like "Gross Receipts", "Net Profit", and "Revenue" are intentionally excluded because they do not unambiguously represent personal income; these will return Unable to Determine
-- **Threshold is hardcoded** at $150,000 and not configurable via the UI
 
 ---
 
